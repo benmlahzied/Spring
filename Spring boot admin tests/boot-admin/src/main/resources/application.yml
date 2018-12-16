@@ -1,0 +1,22 @@
+server:
+  port: 6060
+spring:
+  boot:
+    admin:
+      context-path: admin
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            ms2:
+              - uri: http://localhost:8080/ms2
+                metadata:management.context-path: /actuator
+            ms1:
+              - uri: http://localhost:9090/ms1
+                metadata:
+                  management.context-path: /
+                  health.path: /health
+  devtools:
+    livereload:
+      enabled: true
